@@ -62,7 +62,7 @@
             font-size: 2.5em;
             color: #ff4444;
             text-shadow: 2px 2px 8px #000, 0 0 10px #ff4444;
-            animation: flicker 1s infinite;
+            animation: flicker 2s infinite;
         }
 
         @keyframes flicker {
@@ -141,13 +141,60 @@
             }
         }
 
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #111;
+            color: #ff4444;
+            padding: 20px;
+            border: 2px solid #ff4444;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #ff4444;
+            z-index: 1000;
+            text-align: center;
+            font-family: 'Creepster', cursive;
+            font-size: 1.5em;
+            animation: popupAnimation 0.8s ease-in-out;
+        }
+
+        @keyframes popupAnimation {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .popup button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #444;
+            color: #ff4444;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0px 0px 10px #ff4444;
+        }
+
+        .popup button:hover {
+            background-color: #ff4444;
+            color: #222;
+        }
+
         /* Add a creepy font from Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
     </style>
 
     </style>
 </head>
-
 <body>
     <h1>CCTV FOOTAGE</h1>
 
@@ -156,18 +203,34 @@
 
     <img id="secret-image" src="./evidence-photo.jpg" alt="Secret Image" class="hidden-evidence">
 
+    <!-- Add the audio element for the evil laugh -->
+    <audio id="evil-laugh" src="evil-laugh.wav"></audio>
+
+    <!-- Spooky Popup for Incorrect Password -->
+    <div id="spooky-popup" class="popup">
+        Incorrect password... <br>
+        <button onclick="closePopup()">Try Again</button>
+    </div>
+
     <script>
         document.getElementById('reveal-button').addEventListener('click', function () {
             const password = document.getElementById('password-input').value;
             const correctPassword = 'VERITAS'; // Replace this with the desired password
+            const evilLaugh = document.getElementById('evil-laugh');
+            const popup = document.getElementById('spooky-popup');
 
             if (password === correctPassword) {
                 document.getElementById('secret-image').classList.remove('hidden-evidence');
                 document.getElementById('secret-image').classList.add('show-evidence');
             } else {
-                alert('Incorrect password. Please try again.');
+                evilLaugh.play(); // Play the evil laugh sound
+                popup.style.display = 'block'; // Show the popup
             }
         });
+
+        function closePopup() {
+            document.getElementById('spooky-popup').style.display = 'none'; // Hide the popup
+        }
     </script>
 </body>
 
