@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password-Protected Image Reveal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        #password-input {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        #reveal-button {
+            padding: 8px 16px;
+            margin-top: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .hidden-evidence {
+            display: none;
+        }
+
+        .show-evidence {
+            display: block;
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        body {
+            font-family: 'Creepster', cursive;
+            background-color: #111;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #ff4444;
+            text-shadow: 2px 2px 8px #000, 0 0 10px #ff4444;
+            animation: flicker 2s infinite;
+        }
+
+        @keyframes flicker {
+
+            0%,
+            19%,
+            21%,
+            23%,
+            25%,
+            54%,
+            56%,
+            100% {
+                opacity: 1;
+            }
+
+            20%,
+            24%,
+            55% {
+                opacity: 0.4;
+            }
+        }
+
+        #password-input {
+            padding: 10px;
+            font-size: 18px;
+            border: 2px solid #ff4444;
+            background-color: #222;
+            color: #ff4444;
+            outline: none;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #ff4444;
+        }
+
+        #reveal-button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: #ff4444;
+            box-shadow: 0px 0px 10px #ff4444;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #reveal-button:hover {
+            background-color: #ff4444;
+            color: #222;
+        }
+
+        .hidden-evidence {
+            display: none;
+        }
+
+        .show-evidence {
+            display: block;
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+            border: 5px solid #ff4444;
+            box-shadow: 0px 0px 15px #ff4444;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Add a creepy font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+    </style>
+
+    </style>
+</head>
+
+<body>
+    <h1>CCTV FOOTAGE</h1>
+
+    <input type="password" id="password-input" placeholder="Enter Password" />
+    <button id="reveal-button">Reveal</button>
+
+    <img id="secret-image" src="./evidence-photo.jpg" alt="Secret Image" class="hidden-evidence">
+
+    <script>
+        document.getElementById('reveal-button').addEventListener('click', function () {
+            const password = document.getElementById('password-input').value;
+            const correctPassword = 'VERITAS'; // Replace this with the desired password
+
+            if (password === correctPassword) {
+                document.getElementById('secret-image').classList.remove('hidden-evidence');
+                document.getElementById('secret-image').classList.add('show-evidence');
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        });
+    </script>
+</body>
+
+</html>
