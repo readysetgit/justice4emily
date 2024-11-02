@@ -195,18 +195,16 @@
 
     </style>
 </head>
+
 <body>
     <h1>CCTV FOOTAGE</h1>
 
     <input type="password" id="password-input" placeholder="Enter Password" />
     <button id="reveal-button">Reveal</button>
 
-    <img id="secret-image" src="./evidence-photo.jpg" alt="Secret Image" class="hidden-evidence">
-
-    <!-- Add the audio element for the evil laugh -->
+    <video id="secret-video" src="./video.mp4" class="hidden-evidence" controls></video>
     <audio id="evil-laugh" src="evil-laugh.wav"></audio>
 
-    <!-- Spooky Popup for Incorrect Password -->
     <div id="spooky-popup" class="popup">
         Incorrect password... <br>
         <button onclick="closePopup()">Try Again</button>
@@ -215,13 +213,15 @@
     <script>
         document.getElementById('reveal-button').addEventListener('click', function () {
             const password = document.getElementById('password-input').value;
-            const correctPassword = 'VERITAS'; // Replace this with the desired password
+            const correctPassword = 'VERITAS';
             const evilLaugh = document.getElementById('evil-laugh');
             const popup = document.getElementById('spooky-popup');
+            const secretVideo = document.getElementById('secret-video');
 
             if (password === correctPassword) {
-                document.getElementById('secret-image').classList.remove('hidden-evidence');
-                document.getElementById('secret-image').classList.add('show-evidence');
+                secretVideo.classList.remove('hidden-evidence');
+                secretVideo.classList.add('show-evidence');
+                secretVideo.play(); // Start playing the video
             } else {
                 evilLaugh.play(); // Play the evil laugh sound
                 popup.style.display = 'block'; // Show the popup
@@ -229,7 +229,7 @@
         });
 
         function closePopup() {
-            document.getElementById('spooky-popup').style.display = 'none'; // Hide the popup
+            document.getElementById('spooky-popup').style.display = 'none';
         }
     </script>
 </body>
